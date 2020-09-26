@@ -1414,83 +1414,83 @@ p=H.C([],u.L)
 t=H.C([],t)
 o=new Z.f()
 o.b="room1"
-o.a=W.i("../pictures/room1.png")
+o.a=W.i("./pictures/room1.png")
 C.a.i(p,o)
 o=new Z.f()
 o.b="room2"
-o.a=W.i("../pictures/room2.png")
+o.a=W.i("./pictures/room2.png")
 C.a.i(p,o)
 o=new Z.f()
 o.b="room3"
-o.a=W.i("../pictures/room3.png")
+o.a=W.i("./pictures/room3.png")
 C.a.i(p,o)
 o=new Z.f()
 o.b="ToolET"
-o.a=W.i("../pictures/elokeszulet.png")
+o.a=W.i("./pictures/elokeszulet.png")
 C.a.i(p,o)
 o=new Z.f()
 o.b="ToolP"
-o.a=W.i("../pictures/porszivo.png")
+o.a=W.i("./pictures/porszivo.png")
 C.a.i(p,o)
 o=new Z.f()
 o.b="ToolF"
-o.a=W.i("../pictures/felmosas.png")
+o.a=W.i("./pictures/felmosas.png")
 C.a.i(p,o)
 o=new Z.f()
 o.b="ToolV"
-o.a=W.i("../pictures/visszapakolas.png")
+o.a=W.i("./pictures/visszapakolas.png")
 C.a.i(p,o)
 o=new Z.f()
 o.b="def"
-o.a=W.i("../pictures/def.png")
+o.a=W.i("./pictures/def.png")
 C.a.i(p,o)
 o=new Z.f()
 o.b="et"
-o.a=W.i("../pictures/et.png")
+o.a=W.i("./pictures/et.png")
 C.a.i(p,o)
 o=new Z.f()
 o.b="p"
-o.a=W.i("../pictures/p.png")
+o.a=W.i("./pictures/p.png")
 C.a.i(p,o)
 o=new Z.f()
 o.b="f"
-o.a=W.i("../pictures/f.png")
+o.a=W.i("./pictures/f.png")
 C.a.i(p,o)
 o=new Z.f()
 o.b="sz"
-o.a=W.i("../pictures/sz.png")
+o.a=W.i("./pictures/sz.png")
 C.a.i(p,o)
 o=new Z.f()
 o.b="v"
-o.a=W.i("../pictures/v.png")
+o.a=W.i("./pictures/v.png")
 C.a.i(p,o)
 o=new Z.f()
 o.b="10"
-o.a=W.i("../pictures/10.png")
+o.a=W.i("./pictures/10.png")
 C.a.i(p,o)
 o=new Z.f()
 o.b="20"
-o.a=W.i("../pictures/20.png")
+o.a=W.i("./pictures/20.png")
 C.a.i(p,o)
 o=new Z.f()
 o.b="30"
-o.a=W.i("../pictures/30.png")
+o.a=W.i("./pictures/30.png")
 C.a.i(p,o)
 o=new Z.f()
 o.b="40"
-o.a=W.i("../pictures/40.png")
+o.a=W.i("./pictures/40.png")
 C.a.i(p,o)
 o=new Z.f()
 o.b="50"
-o.a=W.i("../pictures/50.png")
+o.a=W.i("./pictures/50.png")
 C.a.i(p,o)
 o=new Z.f()
 o.b="00"
-o.a=W.i("../pictures/60.png")
+o.a=W.i("./pictures/60.png")
 C.a.i(p,o)
 o=new Z.f()
 o.b="endturn"
-o.a=W.i("../pictures/endturn.png")
+o.a=W.i("./pictures/endturn.png")
 C.a.i(p,o)
 C.a.i(s,new Z.a7(p,t).E(r))
 $.bL=r
