@@ -1,0 +1,237 @@
+
+
+const generateDomFromTask = (task) => {
+    
+    const container = document.createElement("div");
+    container.classList.add('tile');
+    const tileHeader = document.createElement('div');
+    tileHeader.classList.add('title');
+    const title = document.createElement('span');
+    title.innerHTML = task.headerTitle;
+    tileHeader.appendChild(title);
+    container.appendChild(tileHeader);
+    const image = document.createElement('img');
+    image.src= task.imgsrc;
+    image.width=200;
+    image.height=200;
+    container.appendChild(image);
+    const tileBody = document.createElement('div');
+    tileBody.classList.add('tilebody');
+    const help = document.createElement('div');
+    help.innerHTML = 'Segítség'
+    task.helpUrls.forEach(element => {
+        help.appendChild(document.createElement('br'));
+        const url = document.createElement('a');
+        url.innerHTML = element.title;
+        url.href = element.url;
+        help.appendChild(url);
+    });
+    container.appendChild(tileBody);
+    tileBody.appendChild(help)
+    tileBody.appendChild(document.createElement('br'));
+    const listhead = document.createElement('span');
+    listhead.innerHTML='Feladatok:'
+    tileBody.appendChild(listhead)
+    const listEl = document.createElement('ul');
+    
+    task.tasks.map(subtask => {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = subtask;
+        return listItem
+    }).forEach(listitem => {
+        listEl.appendChild(listitem);
+    })
+    container.appendChild(listEl);
+    
+    document.getElementById('task-container').appendChild(container);
+}
+
+const tasks = [
+    {
+        headerTitle: 'Számológép',
+        imgsrc: './calculator.png',
+        helpUrls: [{
+            title: 'Tutorial',
+            url: 'https://www.youtube.com/watch?v=I5kj-YsmWjM'
+        },
+    {
+        title: 'Tutorial2',
+        url: 'https://www.youtube.com/watch?v=QS6Y0ezhyCs'
+    }],
+        tasks: [
+            'Tutorial elvégzése',
+            'Kód felkommentezése',
+            'css átalakítása pl.: színezés, formák, elhelyezkedés',
+            'Új funkció hozzáadása: négyzetreemelés',
+            'kód duplikáció csökkentése a html-en'
+        ]
+    },
+    {
+        headerTitle: 'Blokk',
+        imgsrc: './blokk.png',
+        helpUrls: [{
+            title: 'Tutorial',
+            url: 'https://www.youtube.com/watch?v=IGBRYTpgyg4'},
+            {
+                title: 'Példablokk szövege',
+                url: 'https://pastebin.com/PkDeEkDh'}
+            ],
+        tasks: [
+            'Tutorial elvégzése',
+            'kód felkommentezése',
+            'Képen látható blokk megformázása (vagy egy blokk hasonló formázása)',
+            'Tipp: ha nem látszik a kép akkor jobb klikk > kép megnyitás új lapon'
+
+        ]
+    },
+    {
+        headerTitle: 'Felokosított táblázat',
+        imgsrc: './smarttable.png',
+        helpUrls: [{
+            title: 'Tutorial sort',
+            url: 'https://www.youtube.com/watch?v=8SL_hM1a0yo'
+            },
+            {
+                title: 'Tutorial filter',
+                url: 'https://www.youtube.com/watch?v=qp7PdguA0Vg'
+            },
+            {
+                title: 'Táblázat forráskód',
+                url: "https://pastebin.com/ebzSmYth"
+            }
+            ],
+        tasks: [
+            'Tutorial elvégzése',
+            'kód felkommentezése',
+            'Képen látható táblázat megszerkesztése',
+            'Természetesen nem kötelező a tutorialban bemutatott selectorok használata, ha javascriptben generáljuk a táblázatokat',
+            'Működés: A Year field úgy keres, hogy azt az elemet jeleníti meg, amelynek a start és end közé esik a yearbe írt szám. Csak az első két oszlop alapján rendezhető a táblázat'
+        ]
+    },
+    {
+        headerTitle: 'Memória játék',
+        imgsrc: './memory.png',
+        helpUrls: [
+            {
+                title: 'Tutorial memóriajáték',
+                url: 'https://www.youtube.com/watch?v=xWdkt6KSirw'
+            },
+            {
+                title: 'Történelem adatok',
+                url: 'https://pastebin.com/usS3hTzX'
+            },],
+        tasks: [
+            'Tutorial elvégzése',
+            'kód felkommentezése',
+            'Saját szöveg (esetleg szöveg/kép) alapú, vagy a csatolt forrás alapján memóriajáték elkészítése'
+        ]
+    }
+]
+
+function addActiveClasstoHeader(htmlElement){
+    const activeElement = document.getElementById('navbar').querySelector('.active');
+    if(activeElement){
+        activeElement.classList.remove('active');
+    }
+    
+    htmlElement.classList.add('active');
+}
+function clearMain(){
+    const mainTag = document.getElementsByTagName('main').item(0);
+    while(mainTag.firstChild){
+        mainTag.removeChild(mainTag.firstChild);
+    }
+}
+
+function onClickCbDecorator(callback){
+    return (e) => {
+        if(!e.currentTarget.classList.contains('active')){
+            addActiveClasstoHeader(e.currentTarget);  
+            clearMain();
+            callback(e);
+        }
+    }
+}
+
+function generateDomFromSeries(serie) {
+    const serieContainer = document.createElement('div');
+    serieContainer.classList.add('series-card');
+    const serieTitle = document.createElement('a');
+    serieTitle.innerHTML = serie.title;
+    serieTitle.href= serie.url;
+    serieTitle.target='_blank';
+    serieContainer.appendChild(serieTitle);
+    document.getElementById('series-container').appendChild(serieContainer);
+}
+
+const videoSeries = [
+    {
+        title:'html',
+        url:'https://www.youtube.com/watch?v=HGTJBPNC-Gw'
+    },
+    {
+        title:'css',
+        url:'https://www.youtube.com/watch?v=OXGznpKZ_sA'
+    },
+    {
+        title:'js (magyar)',
+        url:'https://www.youtube.com/watch?v=DMZry55V-kg&list=PLVyg_FEqWfkIvEQvgucUT6nQvQt4hQCgX'
+    },
+    {
+        title:'js',
+        url:'https://www.youtube.com/playlist?list=PLOmL3sL-afbRVTvedkIrQcDwg2UY0JGTF'
+    },
+    {
+        title: 'Flexbox béka',
+        url: 'https://flexboxfroggy.com/'
+    },
+    {
+        title: 'Git branching',
+        url: 'https://learngitbranching.js.org/'
+    },
+
+]
+
+const menuItemList=[{
+    id: 'allin',
+    title: 'Átfogó videó sorozatok/játékok',
+    onclickCb: onClickCbDecorator((e) => {
+        const seriesContainer = document.createElement('div');
+        
+        seriesContainer.id = 'series-container';
+        document.body.getElementsByTagName('main').item(0).appendChild(seriesContainer);
+        videoSeries.forEach(generateDomFromSeries);
+    }),
+    isActive: true
+},
+{
+    id: 'tasks',
+    title: 'Feladatocskák',
+    onclickCb: onClickCbDecorator((e) => {
+        const taskContainer = document.createElement('div');
+        taskContainer.id = 'task-container';
+        document.body.getElementsByTagName('main').item(0).appendChild(taskContainer);
+        tasks.forEach(generateDomFromTask);
+    })
+},]
+
+
+
+function createHeader(){
+    const header = document.getElementById('navbar');
+    const list = document.createElement('ul');
+    menuItemList.forEach(element => {
+        const listElement = document.createElement('li');
+        listElement.classList.add('burning-text');
+        listElement.id = element.id;
+        listElement.innerHTML = `${element.title}`;
+        listElement.addEventListener('click', element.onclickCb);
+        if(element.isActive){
+            listElement.click();
+        }
+        list.appendChild(listElement);
+    })
+    header.appendChild(list);
+}
+
+createHeader();

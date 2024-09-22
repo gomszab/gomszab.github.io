@@ -1,0 +1,120 @@
+body{
+    background-color: rgb(82, 88, 86);
+}
+
+#task-container {
+    display: flex;
+    position: relative;
+
+    .tile{
+        border: 1px solid rgb(55, 65, 41);
+        width: 250px;
+        padding: 20px; 
+        margin: 30px;
+        transition: transform 3s ease-in-out, background-color 3s ease-in-out, filter 3s ease, z-index 0s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgb(173, 175, 177);
+        border-radius: 5px;
+        position: relative;
+        .title{
+            > span {
+                font-size: 20px;
+                font-weight: 700;
+            }
+        }
+    }
+
+   
+
+    .tile::after, .tile::before{
+        content: '';
+        position: absolute;
+        height: 100%;
+        width:100%;
+        background-image: conic-gradient(from var(--angle), transparent 75%,  rgb(251, 255, 0), rgb(30, 255, 0), rgb(0, 153, 255),  rgb(174, 0, 255),  rgb(255, 0, 76));
+        top:50%;
+        left:50%;
+        translate: -50% -50%;
+        z-index: -1;
+        padding: 3px;
+        border-radius: 5px;
+        animation: spin 3s infinite linear;
+    }
+
+    .tile::before{
+        filter: blur(1.5rem);
+        opacity: 0.5;
+        z-index:-2;
+    }
+    
+}
+
+@keyframes spin {
+    from{
+        --angle: 0deg
+    }
+    to{
+        --angle:360deg
+    }
+}
+
+@property --angle{
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits:false;
+}
+
+#navbar {
+    width: 100%;
+    height: 30px;
+    background-color: black;
+    
+    color:white;
+    ul{
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        line-height: 30px;
+        li{
+            margin-right: 20px;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+            cursor: pointer;
+            color: lightblue;
+            &:not(.active):hover{
+                color: #ADD8E6; /* Lighter blue color */
+                text-shadow: 0 0 10px #ADD8E6, 0 0 20px #ADD8E6, 0 0 30px #ADD8E6;
+            }
+            &.active{
+                color:red;
+                cursor: not-allowed;
+            }
+        }
+    }
+}
+
+#series-container{
+    display: flex;
+    .series-card{
+        margin: 10px;
+        > a{
+            background-color: aliceblue;
+            border-radius: 4px;
+            text-align: center;
+            align-content: center;
+            display: block;
+            width: 100px;
+            height: 50px;
+            text-decoration: none;
+            color:blue;
+            transition: color 1s ease-in-out, background-color 1s ease-in-out
+
+        }
+        
+        > a:hover{
+            color: aliceblue;
+            background-color: blue;
+        }
+    }
+}
