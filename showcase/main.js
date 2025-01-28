@@ -1,4 +1,18 @@
-
+const createPopupContainer = () => {
+    const popupContainer = document.createElement('div');
+    popupContainer.id= 'popup-container';
+    popupContainer.style.display = 'none'; 
+    const popupImage = document.createElement('img');
+    popupContainer.appendChild(popupImage);
+    popupContainer.addEventListener('click', (e) => {
+        let popup = e.target;
+        if(popup !== popupContainer){
+            popup = popup.parentElement;
+        }    
+        popup.style.display = 'none';
+    });
+    document.body.appendChild(popupContainer);
+}
 
 const generateDomFromTask = (task) => {
     
@@ -14,6 +28,12 @@ const generateDomFromTask = (task) => {
     image.src= task.imgsrc;
     image.width=200;
     image.height=200;
+    image.addEventListener('click', () => {
+        const popupContainer = document.getElementById('popup-container')
+        const popupImg = popupContainer.querySelector('img');
+        popupImg.src = image.src;
+        popupContainer.style.display = 'flex'; 
+    });
     container.appendChild(image);
     const tileBody = document.createElement('div');
     tileBody.classList.add('tilebody');
@@ -125,6 +145,53 @@ const tasks = [
             'kód felkommentezése',
             'Saját szöveg (esetleg szöveg/kép) alapú, vagy a csatolt forrás alapján memóriajáték elkészítése'
         ]
+    },
+    {
+        headerTitle: 'Számrendszer konverzió',
+        imgsrc: './konvertalo.png',
+        helpUrls: [
+            {
+                title: 'Számrendszerekről',
+                url: 'https://www.youtube.com/watch?v=DZJHIzbqQ3Y'
+            },],
+        tasks: [
+            'Az első input field értéke 1 és 10000 között, a második 2 és 16 között lehet, ellenkező esetben hibaüzenetet jelenítünk meg',
+            'Osztály(ok) létrehozása',
+            'Saját htmlelement(ek) létrehozása',
+            'Kattintás esetén legenerálódik a táblázat, ha az inputok helyes értéket tartalmaznak. A táblázat megjelenítéséért az osztályunk felel'
+        ]
+    },
+    {
+        headerTitle: 'Szám különböző számrendszerekben',
+        imgsrc: './szamrendszerek.png',
+        helpUrls: [],
+        tasks: [
+            'Az input 0 és 255 közötti érték lehet csak, ellenkező esetben hibaüzenet',
+            'Osztály(ok) létrehozása',
+            'Saját htmlelement(ek) létrehozása',
+            'Kattintás esetén legenerálódik a táblázat, ha az inputok helyes értéket tartalmaznak. A táblázat megjelenítéséért az osztályunk felel',
+            'Bónusz: 3 és 9es számrendszerben is legenerálunk egy hasonló táblázatot',
+        ]
+    },
+    {
+        headerTitle: 'Egyiptomi szorzás',
+        imgsrc: './egyiptomi_szorzas.png',
+        helpUrls: [
+            {
+                title: 'Egyiptomi szorzás magyarázat',
+                url: 'https://www.youtube.com/watch?v=yHVq0g6XWes'
+            },
+            {
+                title: 'Magyarazat a tablázathoz',
+                url: 'https://gist.github.com/gomszab/ec1811f36edda89bcb446a6596188da0'
+            }
+        ],
+        tasks: [
+            'Az inputok 2 és 400 közötti értékek lehetnek csak, ellenkező esetben hibaüzenet',
+            'Osztály(ok) létrehozása',
+            'Saját htmlelement(ek) létrehozása',
+            'Kattintás esetén legenerálódik a táblázat, ha az inputok helyes értéket tartalmaznak. A táblázat megjelenítéséért az osztályunk felel',
+        ]
     }
 ]
 
@@ -235,3 +302,4 @@ function createHeader(){
 }
 
 createHeader();
+createPopupContainer();
