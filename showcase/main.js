@@ -49,19 +49,24 @@ const generateDomFromTask = (task) => {
     container.appendChild(tileBody);
     tileBody.appendChild(help)
     tileBody.appendChild(document.createElement('br'));
-    const listhead = document.createElement('span');
-    listhead.innerHTML='Feladatok:'
-    tileBody.appendChild(listhead)
-    const listEl = document.createElement('ul');
+
     
-    task.tasks.map(subtask => {
-        const listItem = document.createElement('li');
-        listItem.innerHTML = subtask;
-        return listItem
-    }).forEach(listitem => {
-        listEl.appendChild(listitem);
-    })
-    container.appendChild(listEl);
+    if(task.tasks){
+        const listhead = document.createElement('span');
+        listhead.innerHTML='Feladatok:'
+        tileBody.appendChild(listhead)
+        const listEl = document.createElement('ul');
+        task.tasks.map(subtask => {
+            const listItem = document.createElement('li');
+            listItem.innerHTML = subtask;
+            return listItem
+        }).forEach(listitem => {
+            listEl.appendChild(listitem);
+        })
+        container.appendChild(listEl);
+    }
+    
+
     
     document.getElementById('task-container').appendChild(container);
 }
@@ -195,6 +200,70 @@ const tasks = [
     }
 ]
 
+
+const practice = [
+    {
+        headerTitle: 'Összegzés',
+        imgsrc: './osszegzes.png',
+        helpUrls: [{
+            title: 'leirás, feladatok',
+            url: 'https://gist.github.com/gomszab/1ea5d547713aeef09fa4654193648573'
+            },
+            {
+                title: 'adatfájl',
+                url: 'https://gist.github.com/gomszab/28f0585ab8b0ed1d2036757851807270'
+            },],
+    },
+    {
+        headerTitle: 'Rendezés',
+        imgsrc: './rendezes.png',
+        helpUrls: [{
+            title: 'leirás, feladatok',
+            url: 'https://gist.github.com/gomszab/925eed54149057d4eafa82218fb6fc0c'
+            },
+            {
+                title: 'adatfájl',
+                url: 'https://gist.github.com/gomszab/28f0585ab8b0ed1d2036757851807270'
+            },],
+    },
+    {
+        headerTitle: 'Szűrés',
+        imgsrc: './szuro.png',
+        helpUrls: [{
+            title: 'leirás, feladatok',
+            url: 'https://gist.github.com/gomszab/4f8894c9f1e6008bf1f067de88a4e1c2'
+            },
+            {
+                title: 'adatfájl',
+                url: 'https://gist.github.com/gomszab/28f0585ab8b0ed1d2036757851807270'
+            },],
+    },
+    {
+        headerTitle: 'Számlálás',
+        imgsrc: './szamlalas.png',
+        helpUrls: [{
+            title: 'leirás, feladatok',
+            url: 'https://gist.github.com/gomszab/c80bd587c1b7ece36398a87c1acb52c5'
+            },
+            {
+                title: 'adatfájl',
+                url: 'https://gist.github.com/gomszab/28f0585ab8b0ed1d2036757851807270'
+            },],
+    },
+    {
+        headerTitle: 'Összes',
+        imgsrc: './osszes.png',
+        helpUrls: [{
+            title: 'leirás, feladatok',
+            url: 'https://gist.github.com/gomszab/af695f5dbee9cb71a08ca8f486eabf80'
+            },
+            {
+                title: 'adatfájl',
+                url: 'https://gist.github.com/gomszab/28f0585ab8b0ed1d2036757851807270'
+            },],
+    },
+]
+
 function addActiveClasstoHeader(htmlElement){
     const activeElement = document.getElementById('navbar').querySelector('.active');
     if(activeElement){
@@ -279,6 +348,16 @@ const menuItemList=[{
         taskContainer.id = 'task-container';
         document.body.getElementsByTagName('main').item(0).appendChild(taskContainer);
         tasks.forEach(generateDomFromTask);
+    })
+},
+{
+    id: 'practice',
+    title: 'Gyakorlás',
+    onclickCb: onClickCbDecorator((e) => {
+        const taskContainer = document.createElement('div');
+        taskContainer.id = 'task-container';
+        document.body.getElementsByTagName('main').item(0).appendChild(taskContainer);
+        practice.forEach(generateDomFromTask);
     })
 },]
 
